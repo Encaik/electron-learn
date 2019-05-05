@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.header {
+    height: 35px;
+    background-color: #4d4d4d;
+    position: fixed;
+    top: 0;
+    -webkit-app-region: drag;
+    display: flex;
+    justify-content: space-between;
+}
+
+.button {
+    width: 20%;
+    -webkit-app-region: no-drag;
+    display: flex;
+    justify-content: space-around;
+}
+
+.content {
+    margin-top: 35px;
+}
+
+.sidebar {
+    background-color: #4d4d4d;
+    width: 280px;
+    position: absolute;
+    float: left;
+}
+
+.context {
+    margin-left: 280px;
+    background-color: #d2d2d2;
+    position: relative;
+}
+
+.footer {
+    height: 75px;
+    background-color: #4d4d4d;
+    position: fixed;
+    bottom: 0;
+}
