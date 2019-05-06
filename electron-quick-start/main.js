@@ -1,6 +1,5 @@
 // 用于控制应用程序生命周期和创建本机浏览器窗口
-const {app, BrowserWindow} = require('electron')
-
+const {app, BrowserWindow, ipcMain} = require('electron')
 // 保留窗口对象的全局引用，否则，当JavaScript对象被垃圾回收时，窗口将自动关闭。
 let mainWindow
 
@@ -9,6 +8,8 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+    minHeight: 645,
+    minWidth: 1000,
     frame: false,
     webPreferences: {
       nodeIntegration: true
@@ -27,6 +28,22 @@ function createWindow () {
     mainWindow = null
   })
 }
+
+ipcMain.on('window-min',function(){
+  mainWindow.minimize();
+})
+
+ipcMain.on('window-max',function(){
+  if(mainWindow.isMaximized()){
+      mainWindow.restore();
+  }else{
+      mainWindow.maximize();
+  }
+})
+
+ipcMain.on('window-close',function(){
+  mainWindow.close();
+})
 
 // 当Electron完成初始化并准备创建浏览器窗口时，将调用此方法。某些API只能在此事件发生后使用。
 app.on('ready', createWindow)

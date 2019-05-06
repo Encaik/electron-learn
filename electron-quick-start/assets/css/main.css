@@ -3,46 +3,100 @@
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    background-image: url("../bgimg/bg.jpg");
+    background-size: cover;
+    opacity: 0.8;
+}
+
+.container-fluid {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.nav {
+    text-align: center;
+}
+
+.left-side,.right-side,.top-side,.bottom-side,.logo,.btn-group {
+    -webkit-app-region: no-drag;
+}
+
+.left-side {
+    grid-row: 1/6;
+    grid-column: 1/2;
+}
+
+.right-side {
+    grid-row: 1/6;
+    grid-column: -1/-2;
+}
+
+.top-side {
+    grid-row: 1/2;
+    grid-column: 2/4;
+}
+
+.bottom-side {
+    grid-row: -1/-2;
+    grid-column: 2/4;
+}
+
+.main {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 3px 50px 1fr 70px 3px;
+}
+
+.logo {
+    grid-row: 2/3;
+    grid-column: 2/3;
+    -webkit-app-region: drag;
 }
 
 .header {
-    height: 35px;
-    background-color: #4d4d4d;
-    position: fixed;
-    top: 0;
+    grid-row: 2/3;
+    grid-column: 3/4;
     -webkit-app-region: drag;
     display: flex;
-    justify-content: space-between;
-}
-
-.button {
-    width: 20%;
-    -webkit-app-region: no-drag;
-    display: flex;
-    justify-content: space-around;
-}
-
-.content {
-    margin-top: 35px;
+    justify-content: flex-end;
 }
 
 .sidebar {
-    background-color: #4d4d4d;
-    width: 280px;
-    position: absolute;
-    float: left;
+    grid-row: 3/4;
+    grid-column: 2/3;
 }
 
 .context {
-    margin-left: 280px;
+    grid-row: 3/4;
+    grid-column: 3/4;
     background-color: #d2d2d2;
-    position: relative;
 }
 
 .footer {
-    height: 75px;
-    background-color: #4d4d4d;
-    position: fixed;
-    bottom: 0;
+    grid-row: 4/6;
+    grid-column: 2/4;
+    color:rgba(255,255,255,0.85)
+}
+
+.progress {
+    margin: 0;
+    padding: 0;
+    height: 5px;
+}
+
+.nav-tabs .nav-link.active,.card,.list-group-item,b {
+    background-color: rgba(0,0,0,0);
+    color: #000;
+}
+
+@media screen and (max-width:1000px) {
+    .main{ grid-template-columns: 3px 300px 1fr 3px; }
+}
+
+@media screen and (min-width:1001px) and (max-width:1300px) {
+    .main{ grid-template-columns: 3px 3fr 7fr 3px; }
+}
+
+@media screen and (min-width:1301px) {
+    .main{ grid-template-columns: 3px 390px 1fr 3px; }
 }

@@ -1,61 +1,146 @@
 <!DOCTYPE html>
-<html lang="zh-cn" style="height:100%">
+<html lang="zh-cn">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Test</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Electron-Music</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/main.css">
 </head>
 
-<body style="height:100%">
-    <div class="container-fluid h-100">
-        <div class="header row w-100">
-            <div>logo</div>
-            <div class="button">
-                <div class="btnmin">最小化</div>
-                <div class="btnmax">最大化</div>
-                <div class="btncls">关闭</div>
+<body>
+    <div class="main container-fluid">
+        <div class="left-side"></div>
+        <div class="right-side"></div>
+        <div class="top-side"></div>
+        <div class="bottom-side"></div>
+        <div class="logo">logo</div>
+        <div class="header">
+            <div class="btn-group m-2">
+                <button id="minbtn" type="button" class="btn btn-outline-light pt-0 pb-0 pl-2 pr-2">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                </button>
+                <button id="maxbtn" type="button" class="btn btn-outline-light pt-0 pb-0 pl-2 pr-2">
+                    <i class="fa fa-window-restore" aria-hidden="true"></i>
+                </button>
+                <button id="clsbtn" type="button" class="btn btn-outline-light pt-0 pb-0 pl-2 pr-2">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
-        <div class="content row h-100">
-            <div class="sidebar h-100">
-                <nav class="navbar navbar-expand">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link 1</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link 2</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link 3</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link 4</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="context w-100">
-                内容
+        <div class="sidebar">
+                <ul class="nav nav-tabs nav-justified border-bottom-0" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link rounded-0 active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+                            <i class="fa fa-music" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-0" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link rounded-0" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
+                            <i class="fa fa-cloud" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade active show" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card rounded-0">
+                            <button class="card-header btn" id="headingOne" type="button" data-toggle="collapse"
+                                data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <b>默认列表</b>
+                            </button>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordionExample">
+                                <ul class="card-body list-group p-0">
+                                    <li class="list-group-item">纯音乐-将军令</li>
+                                    <li class="list-group-item">某个音乐</li>
+                                    <li class="list-group-item">另一个音乐</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card rounded-0">
+                            <button class="card-header btn collapsed" id="headingTwo" type="button" data-toggle="collapse"
+                                data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <b>最近播放</b>
+                            </button>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-parent="#accordionExample">
+                                <ul class="card-body list-group p-0">
+                                    <li class="list-group-item">纯音乐-将军令</li>
+                                    <li class="list-group-item">某个音乐</li>
+                                    <li class="list-group-item">另一个音乐</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card rounded-0">
+                            <button class="card-header btn collapsed" id="headingThree" type="button" data-toggle="collapse"
+                                data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <b>某个歌单</b>
+                            </button>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordionExample">
+                                <ul class="card-body list-group p-0">
+                                    <li class="list-group-item">纯音乐-将军令</li>
+                                    <li class="list-group-item">某个音乐</li>
+                                    <li class="list-group-item">另一个音乐</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
             </div>
         </div>
-        <div class="footer row w-100"> 底部</div>
+        <div class="context">
+            内容
+        </div>
+        <div class="footer row m-0 w-100">
+            <div class="play col-2 p-0 d-flex justify-content-around align-items-center">
+                <span class="fa-stack fa-lg icon-color">
+                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                    <i class="fa fa-step-backward fa-stack-1x"></i>
+                </span>
+                <span class="fa-stack fa-2x icon-color">
+                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                    <i class="fa fa-play fa-stack-1x"></i>
+                </span>
+                <span class="fa-stack fa-lg icon-color">
+                    <i class="fa fa-circle-thin fa-stack-2x"></i>
+                    <i class="fa fa-step-forward fa-stack-1x"></i>
+                </span>
+            </div>
+            <div class="col-8 p-1 d-flex flex-column justify-content-center">
+                <div>胡彦斌-你要的全拿走</div>
+                <div class="row m-0 d-flex justify-content-around align-items-center">
+                    <div class="progress col-10">
+                        <div class="progress-bar progress-bar-animated" style="width:30%"></div>
+                    </div>
+                    <div class="col-2">01:29/04:49</div>
+                </div>
+            </div>
+            <div class="ctrl col-2 p-0 d-flex justify-content-around align-items-center">
+                <i class="fa fa-heart-o icon-color" aria-hidden="true"></i>
+                <i class="fa fa-download icon-color" aria-hidden="true"></i>
+                <i class="fa fa-random icon-color" aria-hidden="true"></i>
+                <i class="fa fa-bars icon-color" aria-hidden="true"></i>
+                <i class="fa fa-volume-up icon-color" aria-hidden="true"></i>
+                <i class="fa fa-indent icon-color" aria-hidden="true"></i>
+            </div>
+        </div>
     </div>
     <script>
-        require('./renderer.js')
-    </script>
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+        window.$ = window.jQuery = require('./node_modules/jquery/dist/jquery.min.js');
+        require('./node_modules/popper.js/dist/umd/popper.min.js')
+        require('./node_modules/bootstrap/dist/js/bootstrap.min.js');
+        require('./renderer.js');
     </script>
 </body>
 
